@@ -14,14 +14,15 @@ function HistoryItem(props) {
   const stepNumber = props.stepNumber;
   const description = stepNumber ? 'Go to move #' + stepNumber : 'Go to beginning';
   return (
-    <li className={props.bold ? "bold" : ""}>
+    <div className={props.bold ? "bold" : ""}>
+      <span>{stepNumber}. </span>
       <i>{formatLocation(props.step.location)}</i>
       <button
         onClick={() => props.onClick(props.stepNumber)}
       >
         {description}
       </button>
-    </li>
+    </div>
   );
 }
 
