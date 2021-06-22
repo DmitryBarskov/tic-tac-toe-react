@@ -18,10 +18,10 @@ class Game extends React.Component {
     }
   }
 
-  jumpTo(step) {
+  jumpTo(stepNumber) {
     this.setState({
-      stepNumber: step,
-      nextGlyph: step % 2 === 0 ? 'X' : 'O'
+      stepNumber: stepNumber,
+      nextGlyph: stepNumber % 2 === 0 ? 'X' : 'O'
     });
   }
 
@@ -63,6 +63,7 @@ class Game extends React.Component {
           <div>{status}</div>
           <History
             history={history}
+            currentStepNumber={this.state.stepNumber}
             onClick={(i) => this.jumpTo(i)}
           />
         </div>
