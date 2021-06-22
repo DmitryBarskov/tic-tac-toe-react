@@ -3,7 +3,7 @@ import React from 'react';
 import Board from './Board';
 import History from './History';
 
-import calculateWinner from './calculateWinner';
+import calculateStatus from './calculateStatus';
 
 class Game extends React.Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class Game extends React.Component {
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
-    if (calculateWinner(current.squares) || squares[i]) {
+    if (calculateStatus(current.squares).gameOver || squares[i]) {
       return;
     }
 
@@ -48,19 +48,28 @@ class Game extends React.Component {
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
-    const winner = calculateWinner(current.squares);
-    const status = winner ? 'Winner: ' + winner : 'Next player: ' + this.state.nextGlyph;
+    const status = calculateStatus(current.squares);
+
+    let description;
+    if (status.winner) {
+      description = 'Winner: ' + status.winner;
+    } else if (!status.draw) {
+      description = 'Next player: ' + this.state.nextGlyph;
+    } else {
+      description = 'Draw';
+    }
 
     return (
       <div className="game">
         <div className="game-board">
           <Board
+            highlightSquares={status.winningLine}
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
           />
         </div>
         <div>
-          <div>{status}</div>
+          <div>{description}</div>
           <History
             history={history}
             currentStepNumber={this.state.stepNumber}

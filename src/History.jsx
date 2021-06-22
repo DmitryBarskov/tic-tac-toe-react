@@ -39,7 +39,7 @@ class History extends React.Component {
         {history.map((step, stepNumber) => {
           return (
             <HistoryItem
-              bold={this.props.currentStepNumber === stepNumber}
+              highlighted={this.props.currentStepNumber === stepNumber}
               key={stepNumber}
               stepNumber={stepNumber}
               step={step}

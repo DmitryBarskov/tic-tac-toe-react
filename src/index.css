@@ -7,10 +7,6 @@ body {
   padding-left: 30px;
 }
 
-.bold {
-  font-weight: 600;
-}
-
 .board-row:after {
   clear: both;
   content: "";
@@ -34,6 +30,10 @@ body {
   padding: 0;
   text-align: center;
   width: 34px;
+}
+
+.red {
+  background-color: red;
 }
 
 .square:focus {

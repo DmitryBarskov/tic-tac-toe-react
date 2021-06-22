@@ -14,7 +14,7 @@ function HistoryItem(props) {
   const stepNumber = props.stepNumber;
   const description = stepNumber ? 'Go to move #' + stepNumber : 'Go to beginning';
   return (
-    <div className={props.bold ? "bold" : ""}>
+    <div className={props.highlighted ? "red" : ""}>
       <span>{stepNumber}. </span>
       <i>{formatLocation(props.step.location)}</i>
       <button

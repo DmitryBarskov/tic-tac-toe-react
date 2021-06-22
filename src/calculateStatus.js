@@ -1,4 +1,4 @@
-function calculateWinner(squares) {
+function calculateStatus(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -12,10 +12,15 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
-      return squares[a];
+      return { gameOver: true, winner: squares[a], winningLine: lines[i] };
     }
   }
-  return null;
+
+  if (squares.filter(Boolean).length === 9) {
+    return { gameOver: true, draw: true };
+  }
+
+  return { gameOver: false };
 }
 
-export default calculateWinner;
+export default calculateStatus;
