@@ -4,6 +4,7 @@ import Board from './Board';
 import History from './History';
 
 import calculateStatus from './calculateStatus';
+import describeStatus from './describeStatus';
 
 class Game extends React.Component {
   constructor(props) {
@@ -49,15 +50,7 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const status = calculateStatus(current.squares);
-
-    let description;
-    if (status.winner) {
-      description = 'Winner: ' + status.winner;
-    } else if (!status.draw) {
-      description = 'Next player: ' + this.state.nextGlyph;
-    } else {
-      description = 'Draw';
-    }
+    const description = describeStatus(status, this.state.nextGlyph);
 
     return (
       <div className="game">
