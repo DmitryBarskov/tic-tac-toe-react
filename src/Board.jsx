@@ -3,10 +3,6 @@ import React from 'react';
 import Square from './Square';
 
 class Board extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   renderSquare(i) {
     let highlighted = this.props.highlightSquares?.find(
       square => square === i
